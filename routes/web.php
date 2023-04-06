@@ -4,6 +4,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +29,16 @@ Route::prefix('list')->group(function (){
 });
 
 //Soal No 3
-Route::get('/news/', [NewsController::class, 'News']);
+Route::get('/news/{page?}', [NewsController::class, 'news']);
 
 //Soal No 4
 Route::prefix('list')->group(function (){
     Route::get('/program', [ProgramController::class, 'program']);
     // http://127.0.0.1:8000/list/program
 });
+
+//Soal No 5
+Route::get('/about-us', [AboutController::class, 'about']);
+
+//Soal No 6
+Route::resource('/contact-us', ContactController::class)->only(['index','store']);
